@@ -16,6 +16,8 @@ const deployDir = process.env.DEPLOY_DIR || './'
 let pkg = require(path.join(process.cwd(), deployDir, 'package.json'))
 
 const run = async () => {
+  console.log('using deploy directory: ' + deployDir);
+
   if (!process.env.NPM_AUTH_TOKEN) throw new Error('Merge-release requires NPM_AUTH_TOKEN')
   let latest
   try {

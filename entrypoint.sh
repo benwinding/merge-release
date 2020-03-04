@@ -29,6 +29,9 @@ git remote --verbose
 git show-ref # useful for debugging
 git branch --verbose
 
+pwd
+ls -al
+
 if [ "$GITHUB_REPOSITORY" = "mikeal/merge-release" ]
 then
   echo "node merge-release-run.js"

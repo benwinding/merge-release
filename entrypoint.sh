@@ -34,7 +34,8 @@ then
   echo "node merge-release-run.js"
   sh -c "node merge-release-run.js $*"
 else
-  echo "npx merge-release"
-  sh -c "npx merge-release $*"
+  npm i
+  echo "node merge-release-run.js"
+  sh -c "node merge-release-run.js $*"
 fi
 git push "${remote_repo}" --tags

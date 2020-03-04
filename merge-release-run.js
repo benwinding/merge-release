@@ -56,7 +56,7 @@ const run = async () => {
     version = 'minor'
   }
 
-  const exec = str => process.stdout.write(execSync(str))
+  const exec = str => console.log('>> runnnig:: ' + str) + process.stdout.write(execSync(str))
 
   exec(`cd "${srcPackageDir}"`)
   let current = execSync(`npm view ${pkg.name} version`).toString()

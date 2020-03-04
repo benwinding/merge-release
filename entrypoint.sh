@@ -34,7 +34,6 @@ then
   echo "node merge-release-run.js"
   sh -c "node merge-release-run.js $*"
 else
-  npm i
   echo "node merge-release-run.js"
   sh -c "node merge-release-run.js $*"
 fi

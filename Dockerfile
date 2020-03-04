@@ -14,5 +14,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install git && rm -rf /
 
 COPY . /
 
+RUN npm i --silent
+
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["help"]

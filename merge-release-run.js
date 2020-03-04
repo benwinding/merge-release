@@ -58,18 +58,17 @@ const run = async () => {
 
   const exec = str => process.stdout.write(execSync(str))
 
-  const current = execSync(`npm view ${pkg.name} version`).toString()
   exec(`cd "${srcPackageDir}"`)
+  let current = execSync(`npm view ${pkg.name} version`).toString()
   exec(`npm version --allow-same-version=true --git-tag-version=false ${current} `)
-
   console.log('current:', current, '/', 'version:', version)
-  const newVersion = execSync(`npm version --git-tag-version=true ${version}`).toString()
+  let newVersion = execSync(`npm version --git-tag-version=false ${version}`).toString()
   console.log('new version:', newVersion)
-
   exec(`cd "${deployDir}"`)
   exec(`npm publish`)
   exec(`cd "${srcPackageDir}"`)
-  exec(`git push`) // cleanup
+  exec(`git checkout package.json`) // cleanup
+  exec(`git tag ${newVersion}`)
 
   /*
   const env = process.env

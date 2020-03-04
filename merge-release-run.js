@@ -56,19 +56,23 @@ const run = async () => {
     version = 'minor'
   }
 
-  const exec = str => console.log('>> runnnig:: ' + str) + process.stdout.write(execSync(str))
+  const logCmd = (cmd, cwd) => console.log(`>> [${cwd}] runnnig:: ${cmd}`);
+  const exec = (cmd, cwd) => {
+    logCmd(cmd, cwd); 
+    return process.stdout.write(execSync(cmd, {cwd}));
+  }
+  const execStr = (cmd, cwd) => {
+    logCmd(cmd, cwd); 
+    const result = execSync(cmd, {cwd}).toString();
+    console.log(` result << ${result}`)
+    return result;
+  }
 
-  exec(`cd "${srcPackageDir}"`)
-  let current = execSync(`npm view ${pkg.name} version`).toString()
-  exec(`npm version --allow-same-version=true --git-tag-version=false ${current} `)
-  console.log('current:', current, '/', 'version:', version)
-  let newVersion = execSync(`npm version --git-tag-version=false ${version}`).toString()
-  console.log('new version:', newVersion)
-  exec(`cd "${deployDir}"`)
-  exec(`npm version --allow-same-version=true --git-tag-version=false ${newVersion} `)
-  console.log('deployPackageJson: ', JSON.stringify(require(path.join(deployDir, '/package.json')), null, 2))
-  exec(`npm publish --access public`)
-  exec(`cd "${srcPackageDir}"`)
+  let current = execStr(`npm view ${pkg.name} version`, srcPackageDir)
+  exec(`npm version --allow-same-version=true --git-tag-version=false ${current} `, srcPackageDir)
+  let newVersion = execStr(`npm version --git-tag-version=false ${version}`, srcPackageDir)
+  exec(`npm version --allow-same-version=true --git-tag-version=false ${newVersion} `, deployDir)
+  exec(`npm publish`, deployDir)
   exec(`git checkout package.json`) // cleanup
   exec(`git tag ${newVersion}`)
 

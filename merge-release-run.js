@@ -11,13 +11,13 @@ const getlog = promisify(git.log.bind(git))
 const get = bent('json', process.env.NPM_REGISTRY_URL || 'https://registry.npmjs.org/')
 
 const event = JSON.parse(fs.readFileSync('/github/workflow/event.json').toString())
+
 const deployDir = process.env.DEPLOY_DIR || './'
+console.log('using deploy directory: ' + deployDir);
 
 let pkg = require(path.join(process.cwd(), deployDir, 'package.json'))
 
 const run = async () => {
-  console.log('using deploy directory: ' + deployDir);
-
   if (!process.env.NPM_AUTH_TOKEN) throw new Error('Merge-release requires NPM_AUTH_TOKEN')
   let latest
   try {

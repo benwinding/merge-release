@@ -67,6 +67,7 @@ const run = async () => {
   exec(`npm publish`, deployDir)
   exec(`git checkout package.json`) // cleanup
   exec(`git tag ${newVersion}`)
+  exec(`git push --tags`)
   /*
   const env = process.env
   const remote = `https://${env.GITHUB_ACTOR}:${env.GITHUB_TOKEN}@github.com/${env.GITHUB_REPOSITORY}.git`

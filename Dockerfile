@@ -1,6 +1,6 @@
 FROM node:12-slim
 
-LABEL version="1.0.0"
+LABEL version="debug2222"
 LABEL repository="http://github.com/mikeal/merge-release"
 LABEL homepage="http://github.com/merge-release"
 LABEL maintainer="Mikeal Rogers <mikeal.rogers@gmail.com>"

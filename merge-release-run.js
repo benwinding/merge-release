@@ -66,7 +66,7 @@ const run = async () => {
   console.log('new version:', newVersion)
   exec(`cd "${deployDir}"`)
   exec(`npm version --allow-same-version=true --git-tag-version=false ${newVersion} `)
-  console.log('deployPackageJson: ', JSON.stringify(require('./package.json'), null, 2))
+  console.log('deployPackageJson: ', JSON.stringify(require(deployDir + './package.json'), null, 2))
   exec(`npm publish`)
   exec(`cd "${srcPackageDir}"`)
   exec(`git checkout package.json`) // cleanup

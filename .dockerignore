@@ -1,8 +1,0 @@
-# Ignore everything 
-.
-# Except... 
-!entrypoint.sh
-!LICENSE
-!merge-release-run.js
-!package.json
-!README.md

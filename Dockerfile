@@ -13,7 +13,7 @@ COPY LICENSE README.md /
 
 RUN apt-get update && apt-get -y --no-install-recommends install git && rm -rf /var/lib/apt/lists/* 
 
-RUN echo updated!
+RUN echo 'benwinding / merge-release'
 
 COPY "entrypoint.sh" "/entrypoint.sh"
 ENTRYPOINT ["/entrypoint.sh"]

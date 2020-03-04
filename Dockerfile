@@ -12,7 +12,7 @@ LABEL com.github.actions.color="red"
 
 RUN apt-get update && apt-get -y --no-install-recommends install git && rm -rf /var/lib/apt/lists/* 
 
-COPY . /
+COPY LICENSE README.md /
 
 RUN npm i --silent
 

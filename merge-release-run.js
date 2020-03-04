@@ -16,6 +16,8 @@ const deployDir = process.env.DEPLOY_DIR || './'
 let pkg = require(path.join(process.cwd(), deployDir, 'package.json'))
 
 const run = async () => {
+  console.log('using deploy directory: ' + deployDir);
+
   if (!process.env.NPM_AUTH_TOKEN) throw new Error('Merge-release requires NPM_AUTH_TOKEN')
   let latest
   try {
@@ -57,7 +59,7 @@ const run = async () => {
   exec(`npm version --allow-same-version=true --git-tag-version=false ${current} `)
   console.log('current:', current, '/', 'version:', version)
   let newVersion = execSync(`npm version --git-tag-version=false ${version}`).toString()
-  console.log('new version:', newVersion, ', using deploy directory: ', deployDir)
+  console.log('new version:', newVersion)
   exec(`npm publish ${deployDir}`)
   exec(`git checkout package.json`) // cleanup
   exec(`git tag ${newVersion}`)

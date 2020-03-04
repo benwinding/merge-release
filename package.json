@@ -1,6 +1,6 @@
 {
   "name": "@benwinding/merge-release",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "scripts": {
     "test": "standard"

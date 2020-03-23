@@ -67,7 +67,8 @@ const run = async () => {
   console.log('new version:', newVersion)
   exec(`npm publish`, deployDir)
   exec(`git checkout package.json`) // cleanup
-  exec(`git tag ${newVersion + gitTagSuffix}`)
+  const gitTagName = newVersion.trim() + gitTagSuffix.trim();
+  exec(`git tag ${gitTagName}`)
   exec(`git push --tags`)
   /*
   const env = process.env

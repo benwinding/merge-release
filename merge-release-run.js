@@ -13,6 +13,7 @@ const get = bent('json', process.env.NPM_REGISTRY_URL || 'https://registry.npmjs
 const event = JSON.parse(fs.readFileSync('/github/workflow/event.json').toString())
 
 const deployDir = path.join(process.cwd(), process.env.DEPLOY_DIR || './')
+const gitTagSuffix = process.env.GIT_TAG_SUFFIX || '';
 const srcPackageDir = path.join(process.cwd(), process.env.SRC_PACKAGE_DIR || './')
 
 console.log('            using deploy directory : ' + deployDir);
@@ -66,7 +67,8 @@ const run = async () => {
   console.log('new version:', newVersion)
   exec(`npm publish`, deployDir)
   exec(`git checkout package.json`) // cleanup
-  exec(`git tag ${newVersion}`)
+  const gitTagName = newVersion.trim() + gitTagSuffix.trim();
+  exec(`git tag ${gitTagName}`)
   exec(`git push --tags`)
   exec(`echo "::set-output name=version::${newVersion}"`)
   /*

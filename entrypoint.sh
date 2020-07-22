@@ -29,7 +29,14 @@ git remote --verbose
 git show-ref # useful for debugging
 git branch --verbose
 
+echo pwd:: `pwd`
 ls -al
+
+cd ..
+
+echo pwd:: `pwd`
+ls -al
+
 cd script
 npm i
 

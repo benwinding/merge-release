@@ -25,9 +25,6 @@ inputs:
   GITHUB_SHA:
     description: 'GITHUB_SHA' 
     required: false
-  GITHUB_SHA:
-    description: 'GITHUB_SHA' 
-    required: false
   GITHUB_ACTOR:
     description: 'GITHUB_ACTOR' 
     required: false

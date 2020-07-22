@@ -29,6 +29,7 @@ git remote --verbose
 git show-ref # useful for debugging
 git branch --verbose
 
+ls -al
 cd script
 npm i
 
